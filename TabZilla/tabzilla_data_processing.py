@@ -115,15 +115,27 @@ class SubsetMaker(object):
         return X, y
 
 
+def inject_missing_values(X, y, missing_prob, num_mask):
+    """
+    Inject missing values into the data matrix X.
+    """
+    X_missing = X.copy()
+    num_idx = np.where(num_mask)[0]
+    missing_mask = np.random.choice([True, False], size=X_missing[:, num_idx].shape, p=[missing_prob, 1-missing_prob])
+    X_missing[:, num_idx][missing_mask] = np.nan
+    return X_missing, y
+
+
 def process_data(
     dataset,
     train_index,
     val_index,
     test_index,
+    impute:SimpleImputer=None,
     verbose=False,
     scaler="None",
     one_hot_encode=False,
-    impute=True,
+    inject_missing:float=None,
     args=None,
 ):
     # validate the scaler
@@ -139,12 +151,22 @@ def process_data(
     # TODO: Remove this assertion after sufficient testing
     assert num_mask.sum() + len(dataset.cat_idx) == dataset.X.shape[1]
 
+
     X_train, y_train = dataset.X[train_index], dataset.y[train_index]
     X_val, y_val = dataset.X[val_index], dataset.y[val_index]
     X_test, y_test = dataset.X[test_index], dataset.y[test_index]
 
+    if inject_missing:
+        if verbose:
+            print(f"Injecting independent missing values with probability {inject_missing}...")
+        X_train, y_train = inject_missing_values(X_train, y_train, inject_missing, num_mask)
+        X_val, y_val = inject_missing_values(X_val, y_val, inject_missing, num_mask)
+        X_test, y_test = inject_missing_values(X_test, y_test, inject_missing, num_mask)
+    
     # Impute numerical features
-    if impute:
+    if impute is not None:
+        if verbose:
+            print(f"Imputing missing values using {impute} strategy...")
         num_idx = np.where(num_mask)[0]
 
         # The imputer drops columns that are fully NaN. So, we first identify columns that are fully NaN and set them to
@@ -159,7 +181,7 @@ def process_data(
             X_test[:, num_idx[fully_nan_num_idcs]] = 0
 
         # Impute numerical features, and pass through the rest
-        numeric_transformer = Pipeline(steps=[("imputer", SimpleImputer())])
+        numeric_transformer = Pipeline(steps=[("imputer", impute)])
         preprocessor = ColumnTransformer(
             transformers=[
                 ("num", numeric_transformer, num_idx),
@@ -188,6 +210,20 @@ def process_data(
         X_train = X_train[:, perm_idx]
         X_val = X_val[:, perm_idx]
         X_test = X_test[:, perm_idx]
+    else:
+        if verbose:
+            print("Dropping highly missing columns...")
+        for name, df in zip(["train", "val", "test"], [X_train, X_val, X_test]):
+            if verbose:
+                print(f"Initial shape: {df.shape}")
+            df_missing = df.isna().sum() / df.shape[0]
+            highly_missing_cols = df_missing[df_missing > 0.5].index
+            df.drop(columns=highly_missing_cols, inplace=True)
+            if verbose:
+                print("Dropping any remainings missing rows")
+            df.dropna(inplace=True)
+            if verbose:
+                print(f"Final shape: {df.shape}")
 
     if scaler != "None":
         if verbose:

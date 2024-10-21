@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import NamedTuple
 
 import numpy as np
+from sklearn.impute import SimpleImputer
 from models.basemodel import BaseModel
 from tabzilla_data_processing import process_data
 from tabzilla_datasets import TabularDataset
@@ -23,6 +24,10 @@ class NpEncoder(json.JSONEncoder):
         if isinstance(obj, np.ndarray):
             return obj.tolist()
         return super(NpEncoder, self).default(obj)
+
+
+def less_than_min_impute(x):
+    return 0.9*np.min(x)
 
 
 def generate_filepath(name, extension):
@@ -224,6 +229,20 @@ def cross_validation(
         val_index = split_dictionary["val"]
         test_index = split_dictionary["test"]
 
+        if args.impute is not None:
+            if args.impute == "mean":
+                impute = SimpleImputer(strategy="mean")
+            elif args.impute == "median":
+                impute = SimpleImputer(strategy="median")
+            elif args.impute == "most_frequent":
+                impute = SimpleImputer(strategy="most_frequent")
+            elif args.impute == "less_than_min":
+                impute = SimpleImputer(strategy=less_than_min_impute)
+            else:
+                raise ValueError(f"Invalid imputation strategy: {args.impute}")
+        else:
+            impute = None
+
         # run pre-processing & split data
         processed_data = process_data(
             dataset,
@@ -234,6 +253,8 @@ def cross_validation(
             scaler=scaler,
             one_hot_encode=False,
             args=args,
+            impute=impute,
+            inject_missing=args.inject_missing,
         )
         X_train, y_train = processed_data["data_train"]
         X_val, y_val = processed_data["data_val"]
@@ -473,5 +494,16 @@ def get_experiment_parser():
         type=int,
         default=0,
         help="Random seed for subset selection.",
+    )
+    experiment_parser.add(
+        "--impute",
+        type=str,
+        choices=["mean", "median", "most_frequent", "less_than_min"],
+        help="imputation strategy for missing values",
+    )
+    experiment_parser.add(
+        "--inject_missing",
+        type=float,
+        help="probability of injecting extra missing values",
     )
     return experiment_parser

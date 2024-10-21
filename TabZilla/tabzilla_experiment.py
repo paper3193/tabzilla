@@ -107,6 +107,8 @@ class TabZillaObjective(object):
                 "cat_dims",
                 "num_classes",
                 "logging_period",
+                "impute",
+                "inject_missing",
             ],
         )
 
@@ -137,6 +139,8 @@ class TabZillaObjective(object):
             subset_rows_method=self.experiment_args.subset_rows_method,
             cat_dims=self.dataset.cat_dims,
             num_classes=self.dataset.num_classes,
+            impute=self.experiment_args.impute,
+            inject_missing=self.experiment_args.inject_missing,
         )
 
         # parameterized model
@@ -219,8 +223,8 @@ def main(experiment_args, model_name, dataset_dir):
         study = optuna.create_study(
             direction=objective.direction,
             study_name=None,
-            storage=None,
-            load_if_exists=False,
+            storage=f"sqlite:///{model_name}_{dataset.name}_random.db",
+            load_if_exists=True,
         )
         study.optimize(
             objective,
@@ -249,8 +253,8 @@ def main(experiment_args, model_name, dataset_dir):
         study = optuna.create_study(
             direction=objective.direction,
             study_name=None,
-            storage=None,
-            load_if_exists=False,
+            storage=f"sqlite:///{model_name}_{dataset.name}_optimizer.db",
+            load_if_exists=True,
         )
         # if random search was run, add these trials
         if previous_trials is not None:
@@ -290,6 +294,12 @@ if __name__ == "__main__":
         choices=ALL_MODELS,
         help="name of the algorithm",
     )
+    parser.add_argument(
+        "--output_dir",
+        default=None,
+        type=str,
+        help="directory to write results to",
+    )
     args = parser.parse_args()
     print(f"ARGS: {args}")
 
@@ -300,5 +310,8 @@ if __name__ == "__main__":
         args="-experiment_config " + args.experiment_config
     )
     print(f"EXPERIMENT ARGS: {experiment_args}")
+    if override_output := args.output_dir:
+        print(f"overriding output directory with {override_output}")
+        experiment_args.output_dir = override_output
 
     main(experiment_args, args.model_name, args.dataset_dir)

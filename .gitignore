@@ -1,7 +1,13 @@
 #
 /TabZilla/datasets
+/TabZilla/backup
+/TabZilla/output
 /TabZilla/results
 /TabZilla/logs
+*.csv
+!metafeatures.csv
+*.tex
+*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -133,6 +139,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# VScode
+.vscode
 
 # codebase specific 
 TabZilla/models/hopular/auxiliary/resources/*
+

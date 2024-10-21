@@ -1,4 +1,9 @@
-# NOTE: you need to authenticate the google cloud CLI before using this script: https://cloud.google.com/docs/authentication/provide-credentials-adc#how-to
+"""
+Produces a csv file with the results of all the experiments, and a csv file with the errors.
+These files are called "metadataset.csv" and "metadataset_errors.csv" respectively.
+"""
+
+# NOTE: you need to authenticate the google cloud CLI before using this script with --cloud: https://cloud.google.com/docs/authentication/provide-credentials-adc#how-to
 
 import argparse
 import itertools
@@ -19,11 +24,11 @@ logging.basicConfig(format="[%(asctime)s] : %(message)s", level=logging.INFO)
 
 local_results_folder = Path("bucket_results")
 save_results_folder = Path("results_files")
+out_results_file = Path("metadataset.csv")
+out_errors_file = Path("metadataset_errors.csv")
 PROJECT_NAME = "research-collab-naszilla"
 RESULTS_BUCKET_NAME = "tabzilla-results"
 ROOT_PATH = "results"
-out_results_file = Path("metadataset.csv")
-out_errors_file = Path("metadataset_errors.csv")
 
 num_processes = 2
 
@@ -250,7 +255,7 @@ def parse_results_file_blob(results_file, blob_path):
     return result_list, exception_list
 
 
-def download_and_process_results(args):
+def get_results(args):
     processed_file_set = set()
     if out_results_file.exists():
         done_results = pd.read_csv(out_results_file)
@@ -263,31 +268,14 @@ def download_and_process_results(args):
         )
         del done_errors
 
-    local_results_folder.mkdir(parents=True, exist_ok=True)
 
-    storage_client = storage.Client(project=PROJECT_NAME)
-    matching_blobs = storage_client.list_blobs(RESULTS_BUCKET_NAME, prefix=ROOT_PATH)
-
-    # don't process blobs that have already been processed
-    matching_blobs = [
-        blob.name for blob in matching_blobs if blob.name not in processed_file_set
-    ]
-
-    # only process blobs that meet this
-    if args.blob_name_contains != "":
-        matching_blobs = [x for x in matching_blobs if args.blob_name_contains in x]
-
-    num_blobs = len(matching_blobs)
-    args = [(i, blobname, num_blobs) for i, blobname in enumerate(matching_blobs)]
-    with multiprocessing.Pool(processes=num_processes) as pool:
-        results_and_exceptions = pool.map(process_blob, args)
-
-    # Flatten list of lists
-    exceptions = list(itertools.chain(*(exc for _, exc in results_and_exceptions)))
-    consolidated_results = list(
-        itertools.chain(*(res for res, _ in results_and_exceptions))
-    )
-    del results_and_exceptions
+    if args.cloud:
+        local_results_folder.mkdir(parents=True, exist_ok=True)
+        exceptions, consolidated_results = download_and_parse_blobs(args, processed_file_set)
+    else:
+        look_in_folder = Path("./results")
+        print(f"looking in {look_in_folder}")
+        exceptions, consolidated_results = parse_local(processed_file_set, look_in_folder)
 
     if not consolidated_results and not exceptions:
         logging.info("No new results. Exiting.")
@@ -318,6 +306,46 @@ def download_and_process_results(args):
         exceptions.sort_values(["dataset_name", "alg_hparam_id"], inplace=True)
         exceptions.to_csv(out_errors_file, index=False)
 
+def download_and_parse_blobs(args, processed_file_set):
+    storage_client = storage.Client(project=PROJECT_NAME)
+    matching_blobs = storage_client.list_blobs(RESULTS_BUCKET_NAME, prefix=ROOT_PATH)
+
+    # don't process blobs that have already been processed
+    matching_blobs = [
+        blob.name for blob in matching_blobs if blob.name not in processed_file_set
+    ]
+
+    # only process blobs that meet this
+    if args.blob_name_contains != "":
+        matching_blobs = [x for x in matching_blobs if args.blob_name_contains in x]
+
+    num_blobs = len(matching_blobs)
+    args = [(i, blobname, num_blobs) for i, blobname in enumerate(matching_blobs)]
+    with multiprocessing.Pool(processes=num_processes) as pool:
+        results_and_exceptions = pool.map(process_blob, args)
+
+    # Flatten list of lists
+    exceptions = list(itertools.chain(*(exc for _, exc in results_and_exceptions)))
+    consolidated_results = list(
+        itertools.chain(*(res for res, _ in results_and_exceptions))
+    )
+    del results_and_exceptions
+    return exceptions,consolidated_results
+
+def parse_local(processed_file_set, look_in_folder):
+    # Arg only contains a filter string for blobs, so we ignore for now
+    result_list, exception_list = [], []
+    for file in look_in_folder.glob("**/*_results.json"):
+        if file.name in processed_file_set:
+            continue
+        this_result_list, this_exception_list = parse_results_file(file)
+        result_list.append(this_result_list)
+        exception_list.append(this_exception_list)
+    # Flatten lists
+    exceptions = list(itertools.chain(*exception_list))
+    consolidated_results = list(itertools.chain(*result_list))
+    return exceptions, consolidated_results
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -328,7 +356,12 @@ if __name__ == "__main__":
         required=False,
         help="only download blobs with a name that contains this string",
     )
+    parser.add_argument(
+        "--cloud",
+        action="store_true",
+        help="download results from cloud storage; otherwise, assume results are in Tabzilla/results",
+    )
 
     args = parser.parse_args()
 
-    download_and_process_results(args)
+    get_results(args)

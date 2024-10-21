@@ -26,3 +26,5 @@ logging_period: 100
 
 ###### Preprocessing of numerical features
 scale_numerical_features: Quantile
+impute: less_than_min
+inject_missing: 0.3

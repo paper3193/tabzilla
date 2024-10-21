@@ -42,6 +42,7 @@ ALG_DISPLAY_NAMES = {
     "DANet": "DANet",
     "rtdl_MLP": "MLP-rtdl",
     "rtdl_ResNet": "ResNet",
+    "ResNet": "ResNet",
     "rtdl_FTTransformer": "FTTransformer",
     "TabPFNModel": "TabPFN",
     "LightGBM": "LightGBM",
