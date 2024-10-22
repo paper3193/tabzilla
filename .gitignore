@@ -1,6 +1,5 @@
 #
 /TabZilla/datasets
-/TabZilla/backup
 /TabZilla/output
 /TabZilla/results
 /TabZilla/logs
@@ -8,6 +7,7 @@
 !metafeatures.csv
 *.tex
 *.db
+backup*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

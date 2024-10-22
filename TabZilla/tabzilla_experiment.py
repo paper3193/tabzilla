@@ -224,7 +224,7 @@ def main(experiment_args, model_name, dataset_dir):
         study = optuna.create_study(
             direction=objective.direction,
             study_name=experiment_args.experiment_name,
-            storage=f"sqlite:///{model_name}_{dataset.name}_random.db",
+            storage=f"sqlite:///optuna_dbs/{model_name}_{dataset.name}_random.db",
             load_if_exists=True,
         )
         study.optimize(
@@ -254,7 +254,7 @@ def main(experiment_args, model_name, dataset_dir):
         study = optuna.create_study(
             direction=objective.direction,
             study_name=experiment_args.experiment_name,
-            storage=f"sqlite:///{model_name}_{dataset.name}_optimizer.db",
+            storage=f"sqlite:///optuna_dbs/{model_name}_{dataset.name}_optimizer.db",
             load_if_exists=True,
         )
         # if random search was run, add these trials

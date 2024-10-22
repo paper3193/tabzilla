@@ -61,8 +61,8 @@ LOG_DIR=${PWD}/logs
 # run experiments
 
 num_experiments=0
-for i in ${!MODELS_ENVS[@]}; do
-  for j in ${!DATASETS[@]}; do
+for j in ${!DATASETS[@]}; do
+  for i in ${!MODELS_ENVS[@]}; do
     for k in ${!CONFIGS[@]}; do
         model_env="${MODELS_ENVS[i]}_tabzilla"
         model="${model_env%%:*}"
