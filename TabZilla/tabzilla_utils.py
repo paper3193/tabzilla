@@ -506,4 +506,10 @@ def get_experiment_parser():
         type=float,
         help="probability of injecting extra missing values",
     )
+    experiment_parser.add(
+        "--experiment_name",
+        type=str,
+        default=None,
+        help="name of the experiment for looking up the optuna study name",
+    )
     return experiment_parser

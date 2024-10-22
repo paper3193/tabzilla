@@ -1,3 +1,6 @@
+###### experiment name - for looking up optuna study name
+experiment_name: drop
+
 ###### directory where results will be written
 output_dir: ./results/
 
@@ -23,5 +26,5 @@ early_stopping_rounds: 20
 epochs: 500
 logging_period: 100
 scale_numerical_features: Quantile
-impute: less_than_min
+# Lack of impute -> drop
 inject_missing: 0.3

@@ -1,4 +1,5 @@
 import time
+import warnings
 
 import numpy as np
 from sklearn.compose import ColumnTransformer
@@ -119,7 +120,11 @@ def inject_missing_values(X, y, missing_prob, num_mask):
     """
     Inject missing values into the data matrix X.
     """
-    X_missing = X.copy()
+    X_missing: np.ndarray = X.copy()
+    if X_missing.dtype not in [np.float32, np.float64]:
+        if X_missing.dtype not in [np.int8, np.int16, np.int32, np.int64, np.uint8, np.uint16, np.uint32, np.uint64]:
+            warnings.warn(f"X_missing dtype is weirdly {X_missing.dtype}, converting to float32")
+        X_missing = X_missing.astype(np.float32)
     num_idx = np.where(num_mask)[0]
     missing_mask = np.random.choice([True, False], size=X_missing[:, num_idx].shape, p=[missing_prob, 1-missing_prob])
     X_missing[:, num_idx][missing_mask] = np.nan

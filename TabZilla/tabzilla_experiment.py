@@ -3,6 +3,7 @@
 # this script runs an experiment specified by a config file
 
 import argparse
+from datetime import datetime
 import logging
 import sys
 import traceback
@@ -222,7 +223,7 @@ def main(experiment_args, model_name, dataset_dir):
         )
         study = optuna.create_study(
             direction=objective.direction,
-            study_name=None,
+            study_name=experiment_args.experiment_name,
             storage=f"sqlite:///{model_name}_{dataset.name}_random.db",
             load_if_exists=True,
         )
@@ -252,7 +253,7 @@ def main(experiment_args, model_name, dataset_dir):
         )
         study = optuna.create_study(
             direction=objective.direction,
-            study_name=None,
+            study_name=experiment_args.experiment_name,
             storage=f"sqlite:///{model_name}_{dataset.name}_optimizer.db",
             load_if_exists=True,
         )
@@ -313,5 +314,9 @@ if __name__ == "__main__":
     if override_output := args.output_dir:
         print(f"overriding output directory with {override_output}")
         experiment_args.output_dir = override_output
+    
+    if experiment_args.experiment_name is None:
+        now = datetime.now().strftime("%m%d%y_%H%M%S")
+        experiment_args.experiment_name = f"{now}_{args.model_name}_{args.dataset_dir.split('/')[-1]}"
 
     main(experiment_args, args.model_name, args.dataset_dir)
