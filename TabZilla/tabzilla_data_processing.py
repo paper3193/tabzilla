@@ -218,21 +218,35 @@ def process_data(
     else:
         if verbose or True:
             print("Dropping highly missing columns...")
-        for name, df in zip(["train", "val", "test"], [X_train, X_val, X_test]):
+        def drop_rows_after_columns(X, y, name, frac_threshold=0.3, verbose=True):
+            if X.dtype not in [np.float32, np.float64]:
+                warnings.warn(f"df dtype is weirdly {X.dtype}, converting to float32")
+                X = X.astype(np.float32)
+            highly_missing_cols = np.isnan(X).sum(axis=0)  / X.shape[0] > frac_threshold
             if verbose:
-                print(f"Initial shape {name}: {df.shape}, dtype: {df.dtype}")
-            df = df.astype(np.float32)
-            highly_missing_cols = np.isnan(df).sum(axis=0)  / df.shape[0] > 0.3
+                print(f"Setting {highly_missing_cols.sum()} columns with >{frac_threshold} missing values to zero")
+            # Cant drop as we rely on indices; so instead we set them to zero
+            X[:, highly_missing_cols] = 0
             if verbose:
-                print(f"Dropping {highly_missing_cols.sum()} columns with >30% missing values")
-            df = df[:, ~highly_missing_cols]
-            if verbose:
-                print(f"Shape {name}: {df.shape}")
+                print(f"Shape {name}: {X.shape}")
             if verbose:
                 print(f"Dropping any remainings missing rows {name}")
-            df = df[~np.isnan(df).any(axis=1), :]
+            to_keep = ~np.isnan(X).any(axis=1)
+            X = X[to_keep, :]
+            y = y[to_keep]
             if verbose:
-                print(f"Final shape {name}: {df.shape}")
+                print(f"Final shape {name}: {X.shape}")
+            return X, y
+        X_train, y_train = drop_rows_after_columns(X_train, y_train, "train", frac_threshold=0.3, verbose=verbose)
+        X_val, y_val = drop_rows_after_columns(X_val, y_val, "val", frac_threshold=0.3, verbose=verbose)
+        X_test, y_test = drop_rows_after_columns(X_test, y_test, "test", frac_threshold=0.3, verbose=verbose)
+    
+    print("Finished handling NAs; checking if any remain...")
+    for X,y in [(X_train, y_train), (X_val, y_val), (X_test, y_test)]:
+        if np.isnan(X).any():
+            raise ValueError("NaN in data")
+        if X.shape[0] != y.shape[0]:
+            raise ValueError("X and y have different numbers of rows")
 
     if scaler != "None":
         if verbose:

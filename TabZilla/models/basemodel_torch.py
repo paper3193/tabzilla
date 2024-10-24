@@ -24,6 +24,7 @@ class BaseModelTorch(BaseModel):
 
         # tabzilla: use a random string for temporary saving/loading of the model. pass this to load/save model functions
         self.tmp_name = "tmp_" + ''.join(random.sample(string.ascii_uppercase + string.digits, k=12))
+        print(f"Checkpointing in {self.tmp_name}")
 
     def to_device(self):
         if self.args.data_parallel:
@@ -50,7 +51,6 @@ class BaseModelTorch(BaseModel):
         optimizer = optim.AdamW(
             self.model.parameters(), lr=self.params["learning_rate"]
         )
-
         X = torch.tensor(X).float()
         X_val = torch.tensor(X_val).float()
 
@@ -90,8 +90,12 @@ class BaseModelTorch(BaseModel):
         start_time = time.time()
         for epoch in range(self.args.epochs):
             for i, (batch_X, batch_y) in enumerate(train_loader):
+                if torch.isnan(batch_X).any():
+                    raise ValueError("NaN in input")
 
                 out = self.model(batch_X.to(self.device))
+                if torch.isnan(out).any():
+                    raise ValueError("NaN in output")
 
                 if (
                     self.args.objective == "regression"
