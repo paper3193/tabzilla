@@ -12,10 +12,13 @@ easy_import_task_file = "openml_easy_import_list.txt"  # Datasets identified jus
 debug_mode = False
 
 openml_tasks = [
+    # {
+    #     "openml_task_id": 3021,
+    #     "drop_features": ["TBG"],
+    # },
     {
-        "openml_task_id": 3021,
-        "drop_features": ["TBG"],
-    },
+        "openml_task_id": 362129,
+    }
     # These datasets have been added to openml_easy_import_list.txt, but are provided here as a blueprint
     # for addition of other datasets
     # {

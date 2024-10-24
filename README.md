@@ -197,7 +197,7 @@ Currently, there are two main procedures to add datasets: one for OpenML dataset
 
 ### General (non-OpenML) datasets
 
-To add a new dataset, you need to add a new function to [`TabZilla/tabzilla_preprocessors.py`](TabZilla/tabzilla_preprocessor_utils.py), which defines all information about the dataset. This function needs to use the decorator `dataset_preproccessor`, and is invoked through `tabzilla_data_preprocessing.py`.
+To add a new dataset, you need to add a new function to [`TabZilla/tabzilla_preprocessor_utils.py`](TabZilla/tabzilla_preprocessor_utils.py), which defines all information about the dataset. This function needs to use the decorator `dataset_preproccessor`, and is invoked through `tabzilla_data_preprocessing.py`.
 
 In general, the function must take no arguments, and it must return a dictionary with keys used to initialize a `TabularDataset` object. The following keys are required (since they are required by the constructor):
 1. `X`: features, as numpy array of shape `(n_examples, n_features)`

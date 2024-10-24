@@ -136,7 +136,7 @@ def process_data(
     train_index,
     val_index,
     test_index,
-    impute:SimpleImputer=None,
+    impute=None,
     verbose=False,
     scaler="None",
     one_hot_encode=False,
@@ -162,28 +162,28 @@ def process_data(
     X_test, y_test = dataset.X[test_index], dataset.y[test_index]
 
     if inject_missing:
-        if verbose:
+        if verbose or True:
             print(f"Injecting independent missing values with probability {inject_missing}...")
         X_train, y_train = inject_missing_values(X_train, y_train, inject_missing, num_mask)
         X_val, y_val = inject_missing_values(X_val, y_val, inject_missing, num_mask)
         X_test, y_test = inject_missing_values(X_test, y_test, inject_missing, num_mask)
     
     # Impute numerical features
+    # The imputer drops columns that are fully NaN. So, we first identify columns that are fully NaN and set them to
+    # zero. This will effectively drop the columns without changing the column indexing and ordering that many of
+    # the functions in this repository rely upon.
+    num_idx = np.where(num_mask)[0]
+    fully_nan_num_idcs = np.nonzero(
+        (~np.isnan(X_train[:, num_idx].astype("float"))).sum(axis=0) == 0
+    )[0]
+    if fully_nan_num_idcs.size > 0:
+        X_train[:, num_idx[fully_nan_num_idcs]] = 0
+        X_val[:, num_idx[fully_nan_num_idcs]] = 0
+        X_test[:, num_idx[fully_nan_num_idcs]] = 0
     if impute is not None:
-        if verbose:
+        if verbose or True:
             print(f"Imputing missing values using {impute} strategy...")
-        num_idx = np.where(num_mask)[0]
 
-        # The imputer drops columns that are fully NaN. So, we first identify columns that are fully NaN and set them to
-        # zero. This will effectively drop the columns without changing the column indexing and ordering that many of
-        # the functions in this repository rely upon.
-        fully_nan_num_idcs = np.nonzero(
-            (~np.isnan(X_train[:, num_idx].astype("float"))).sum(axis=0) == 0
-        )[0]
-        if fully_nan_num_idcs.size > 0:
-            X_train[:, num_idx[fully_nan_num_idcs]] = 0
-            X_val[:, num_idx[fully_nan_num_idcs]] = 0
-            X_test[:, num_idx[fully_nan_num_idcs]] = 0
 
         # Impute numerical features, and pass through the rest
         numeric_transformer = Pipeline(steps=[("imputer", impute)])
@@ -216,19 +216,23 @@ def process_data(
         X_val = X_val[:, perm_idx]
         X_test = X_test[:, perm_idx]
     else:
-        if verbose:
+        if verbose or True:
             print("Dropping highly missing columns...")
         for name, df in zip(["train", "val", "test"], [X_train, X_val, X_test]):
             if verbose:
-                print(f"Initial shape: {df.shape}")
-            df_missing = df.isna().sum() / df.shape[0]
-            highly_missing_cols = df_missing[df_missing > 0.5].index
-            df.drop(columns=highly_missing_cols, inplace=True)
+                print(f"Initial shape {name}: {df.shape}, dtype: {df.dtype}")
+            df = df.astype(np.float32)
+            highly_missing_cols = np.isnan(df).sum(axis=0)  / df.shape[0] > 0.3
             if verbose:
-                print("Dropping any remainings missing rows")
-            df.dropna(inplace=True)
+                print(f"Dropping {highly_missing_cols.sum()} columns with >30% missing values")
+            df = df[:, ~highly_missing_cols]
             if verbose:
-                print(f"Final shape: {df.shape}")
+                print(f"Shape {name}: {df.shape}")
+            if verbose:
+                print(f"Dropping any remainings missing rows {name}")
+            df = df[~np.isnan(df).any(axis=1), :]
+            if verbose:
+                print(f"Final shape {name}: {df.shape}")
 
     if scaler != "None":
         if verbose:

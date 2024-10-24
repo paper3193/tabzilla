@@ -3,11 +3,12 @@
 /TabZilla/output
 /TabZilla/results
 /TabZilla/logs
-*.csv
+# *.csv
 !metafeatures.csv
 *.tex
 *.db
 backup*
+*_results.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

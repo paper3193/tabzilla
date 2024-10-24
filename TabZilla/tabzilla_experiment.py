@@ -227,13 +227,18 @@ def main(experiment_args, model_name, dataset_dir):
             storage=f"sqlite:///optuna_dbs/{model_name}_{dataset.name}_random.db",
             load_if_exists=True,
         )
-        study.optimize(
-            objective,
-            n_trials=experiment_args.n_random_trials,
-            timeout=experiment_args.experiment_time_limit,
-            callbacks=[iteration_callback],
+        previous_trials = [x for x in study.trials if x.state == optuna.trial.TrialState.COMPLETE]
+        left_to_do = experiment_args.n_random_trials - len(previous_trials)
+        print(
+            f"Found {len(previous_trials)} prior runs; only doing {left_to_do} to make up to {experiment_args.n_random_trials}"
         )
-        previous_trials = study.trials
+        if left_to_do > 0:
+            study.optimize(
+                objective,
+                n_trials=left_to_do,
+                timeout=experiment_args.experiment_time_limit,
+                callbacks=[iteration_callback],
+            )
     else:
         previous_trials = None
 

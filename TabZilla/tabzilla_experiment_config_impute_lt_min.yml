@@ -4,9 +4,9 @@ experiment_name: lt_min
 ###### directory where results will be written
 output_dir: ./results/
 
-###### experiment & trial time limit in seconds (10 hours / 2 hours)
-experiment_time_limit: 36000
-trial_time_limit: 7200
+###### experiment & trial time limit in seconds (5 hours / 1 hour)
+experiment_time_limit: 18000
+trial_time_limit: 3600
 
 
 ###### number of trials for hyperparameter search & optimization

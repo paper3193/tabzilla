@@ -13,6 +13,7 @@ fi
 MAX_PROCESSES=1
 
 # experiment name (will be appended to results files)
+# Bad experiment name, but we're keeping it for now; to avoid breaking existing results
 name=local-benchmark-lt-min-impute-gpu
 
 # config file
@@ -72,8 +73,8 @@ for j in ${!DATASETS[@]}; do
         config_file_name=${config_file%.*}
 
         # if the experiment is already in the result log, skip it
-        if grep -Fq "${dataset_name},${model},${experiment_name}" ${result_log}; then
-        echo "experiment found in logs. skipping. dataset=${dataset_name}, model=${model}, expt=${experiment_name}"
+        if grep -Fq "${dataset_name},${model},${experiment_name},${config_file_name}" ${result_log}; then
+        echo "experiment found in logs. skipping. dataset=${dataset_name}, model=${model}, expt=${experiment_name}, config=${config_file_name}"
         continue
         fi
 

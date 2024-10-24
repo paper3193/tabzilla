@@ -1,0 +1,848 @@
+dataset_name,alg_name,hparam_source,trial_number,alg_hparam_id,exception
+openml__fps-in-video-games__362129,rtdl_FTTransformer,default,0,rtdl_FTTransformer__seed_0__trial_0,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 866, in _reshape
+    .reshape(batch_size * self.n_heads, n_tokens, d_head)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.68 GiB already allocated; 17.56 MiB free; 10.48 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_1_s0,1,rtdl_FTTransformer__seed_0__trial_1,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 911, in forward
+    .reshape(batch_size, n_q_tokens, self.n_heads * d_head_value)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.07 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_10_s0,10,rtdl_FTTransformer__seed_0__trial_10,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_11_s0,11,rtdl_FTTransformer__seed_0__trial_11,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_12_s0,12,rtdl_FTTransformer__seed_0__trial_12,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_13_s0,13,rtdl_FTTransformer__seed_0__trial_13,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_14_s0,14,rtdl_FTTransformer__seed_0__trial_14,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_15_s0,15,rtdl_FTTransformer__seed_0__trial_15,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_16_s0,16,rtdl_FTTransformer__seed_0__trial_16,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_17_s0,17,rtdl_FTTransformer__seed_0__trial_17,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_18_s0,18,rtdl_FTTransformer__seed_0__trial_18,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_19_s0,19,rtdl_FTTransformer__seed_0__trial_19,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_2_s0,2,rtdl_FTTransformer__seed_0__trial_2,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_20_s0,20,rtdl_FTTransformer__seed_0__trial_20,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_21_s0,21,rtdl_FTTransformer__seed_0__trial_21,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_22_s0,22,rtdl_FTTransformer__seed_0__trial_22,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_23_s0,23,rtdl_FTTransformer__seed_0__trial_23,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_24_s0,24,rtdl_FTTransformer__seed_0__trial_24,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_25_s0,25,rtdl_FTTransformer__seed_0__trial_25,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_26_s0,26,rtdl_FTTransformer__seed_0__trial_26,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_27_s0,27,rtdl_FTTransformer__seed_0__trial_27,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_28_s0,28,rtdl_FTTransformer__seed_0__trial_28,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_29_s0,29,rtdl_FTTransformer__seed_0__trial_29,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_3_s0,3,rtdl_FTTransformer__seed_0__trial_3,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_4_s0,4,rtdl_FTTransformer__seed_0__trial_4,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_5_s0,5,rtdl_FTTransformer__seed_0__trial_5,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_6_s0,6,rtdl_FTTransformer__seed_0__trial_6,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_7_s0,7,rtdl_FTTransformer__seed_0__trial_7,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_8_s0,8,rtdl_FTTransformer__seed_0__trial_8,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_FTTransformer,random_9_s0,9,rtdl_FTTransformer__seed_0__trial_9,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 268, in cross_validation
+    loss_history, val_loss_history = curr_model.fit(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 382, in fit
+    return super().fit(X, y, X_val, y_val)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/basemodel_torch.py"", line 114, in fit
+    out = self.model(batch_val_X.to(self.device))
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/models/rtdl.py"", line 205, in forward
+    x = self.model(x_num, x_cat)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1487, in forward
+    x = self.transformer(x)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 1150, in forward
+    x_residual, _ = layer['attention'](
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/torch/nn/modules/module.py"", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File ""/home/al3615/micromamba/envs/tabzilla/lib/python3.10/site-packages/rtdl/modules.py"", line 907, in forward
+    x = attention_probs @ self._reshape(v)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.75 GiB total capacity; 9.06 GiB already allocated; 1.56 MiB free; 10.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+"
+openml__fps-in-video-games__362129,rtdl_ResNet,random_2_s0,2,rtdl_ResNet__seed_0__trial_2,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 224, in cross_validation
+    raise TimeoutException(
+tabzilla_utils.TimeoutException: time limit of 3600s reached during fold 6
+"
+openml__fps-in-video-games__362129,rtdl_ResNet,random_3_s0,3,rtdl_ResNet__seed_0__trial_3,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 224, in cross_validation
+    raise TimeoutException(
+tabzilla_utils.TimeoutException: time limit of 3600s reached during fold 6
+"
+openml__fps-in-video-games__362129,rtdl_ResNet,random_4_s0,4,rtdl_ResNet__seed_0__trial_4,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 224, in cross_validation
+    raise TimeoutException(
+tabzilla_utils.TimeoutException: time limit of 3600s reached during fold 6
+"
+openml__fps-in-video-games__362129,rtdl_ResNet,random_5_s0,5,rtdl_ResNet__seed_0__trial_5,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 224, in cross_validation
+    raise TimeoutException(
+tabzilla_utils.TimeoutException: time limit of 3600s reached during fold 6
+"
+openml__fps-in-video-games__362129,rtdl_ResNet,random_6_s0,6,rtdl_ResNet__seed_0__trial_6,"Traceback (most recent call last):
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_experiment.py"", line 152, in __call__
+    result = cross_validation(
+  File ""/home/al3615/projects/reproduce_Paper3193/TabZilla/tabzilla_utils.py"", line 224, in cross_validation
+    raise TimeoutException(
+tabzilla_utils.TimeoutException: time limit of 3600s reached during fold 6
+"

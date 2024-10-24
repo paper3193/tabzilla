@@ -257,6 +257,12 @@ def parse_results_file_blob(results_file, blob_path):
 
 def get_results(args):
     processed_file_set = set()
+    global out_results_file
+    global out_errors_file
+    if args.suffix:
+        out_results_file = out_results_file.with_name(f"{out_results_file.stem}_{args.suffix}.csv")
+        out_errors_file = out_errors_file.with_name(f"{out_errors_file.stem}_{args.suffix}.csv")
+
     if out_results_file.exists():
         done_results = pd.read_csv(out_results_file)
         processed_file_set = set(done_results["results_bucket_path"])
@@ -273,7 +279,10 @@ def get_results(args):
         local_results_folder.mkdir(parents=True, exist_ok=True)
         exceptions, consolidated_results = download_and_parse_blobs(args, processed_file_set)
     else:
-        look_in_folder = Path("./results")
+        if args.dir:
+            look_in_folder = Path(args.dir)
+        else:
+            look_in_folder = Path("./results")
         print(f"looking in {look_in_folder}")
         exceptions, consolidated_results = parse_local(processed_file_set, look_in_folder)
 
@@ -360,6 +369,18 @@ if __name__ == "__main__":
         "--cloud",
         action="store_true",
         help="download results from cloud storage; otherwise, assume results are in Tabzilla/results",
+    )
+    parser.add_argument(
+        "--dir",
+        type=str,
+        default="",
+        help="only process results in this directory",
+    )
+    parser.add_argument(
+        "--suffix",
+        type=str,
+        default="",
+        help="Add this suffix to the output files",
     )
 
     args = parser.parse_args()

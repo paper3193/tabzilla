@@ -273,8 +273,8 @@ class rtdl_ResNet(BaseModelTorch):
     def __init__(self, params, args):
         super().__init__(params, args)
 
-        if args.objective == "regression":
-            raise Exception("not implemented for regression yet.")
+        # if args.objective == "regression":
+        #     raise Exception("not implemented for regression yet.")
 
         num_mask = np.ones(args.num_features)
         num_mask[args.cat_idx] = 0
@@ -331,8 +331,8 @@ class rtdl_FTTransformer(BaseModelTorch):
     def __init__(self, params, args):
         super().__init__(params, args)
 
-        if args.objective == "regression":
-            raise Exception("not implemented for regression yet.")
+        # if args.objective == "regression":
+        #     raise Exception("not implemented for regression yet.")
 
         num_mask = np.ones(args.num_features)
         num_mask[args.cat_idx] = 0
