@@ -47,7 +47,7 @@ class BaseModelTorch(BaseModel):
         return torch.device(device)
 
     # TabZilla: added a time limit
-    def fit(self, X, y, X_val=None, y_val=None, time_limit=600):
+    def fit(self, X, y, X_val=None, y_val=None, time_limit=600, verbose=False):
         optimizer = optim.AdamW(
             self.model.parameters(), lr=self.params["learning_rate"]
         )
@@ -89,6 +89,9 @@ class BaseModelTorch(BaseModel):
 
         start_time = time.time()
         for epoch in range(self.args.epochs):
+            num_batches = len(train_loader)
+            if verbose:
+                print(f"Epoch {epoch}: ({num_batches} batches)")
             for i, (batch_X, batch_y) in enumerate(train_loader):
                 if torch.isnan(batch_X).any():
                     raise ValueError("NaN in input")
@@ -110,10 +113,16 @@ class BaseModelTorch(BaseModel):
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
+                if verbose and i % 10 == 0:
+                    print(f"\r{i}/{num_batches}", end="", flush=True)
 
             # Early Stopping
+
             val_loss = 0.0
             val_dim = 0
+            num_batches = len(val_loader)
+            if verbose:
+                print(f"\nEpoch {epoch} validation: ({num_batches} batches)")
             for val_i, (batch_val_X, batch_val_y) in enumerate(val_loader):
                 out = self.model(batch_val_X.to(self.device))
 
@@ -123,12 +132,15 @@ class BaseModelTorch(BaseModel):
                 ):
                     #out = out.squeeze()
                     out = out.reshape((batch_val_X.shape[0], ))
-
-                val_loss += loss_func(out, batch_val_y.to(self.device))
+                loss = loss_func(out, batch_val_y.to(self.device))
+                val_loss += loss.item()
                 val_dim += 1
-
+                if verbose and val_i % 10 == 0:
+                    print(f"\r{val_i}/{num_batches}", end="", flush=True)
+            if verbose:
+                print("")
             val_loss /= val_dim
-            val_loss_history.append(val_loss.item())
+            val_loss_history.append(val_loss)
 
             print("Epoch %d, Val Loss: %.5f" % (epoch, val_loss))
 

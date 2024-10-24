@@ -1,5 +1,5 @@
 ###### experiment name - for looking up optuna study name
-experiment_name: drop_fps
+experiment_name: lt_min_fps
 
 
 ###### directory where results will be written
@@ -21,11 +21,11 @@ gpu_ids: [0] # The 3080
 data_parallel: False
 
 ###### Training parameters
-batch_size: 512
+batch_size: 1024
 val_batch_size: 256
 early_stopping_rounds: 20
 epochs: 500
 logging_period: 100
 scale_numerical_features: Quantile
-# impute: less_than_min
+impute: less_than_min
 # inject_missing: 0.3

@@ -21,7 +21,7 @@ gpu_ids: [0] # The 3080
 data_parallel: False
 
 ###### Training parameters
-batch_size: 128
+batch_size: 512
 val_batch_size: 256
 early_stopping_rounds: 20
 epochs: 500

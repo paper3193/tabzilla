@@ -180,6 +180,11 @@ def process_data(
         X_train[:, num_idx[fully_nan_num_idcs]] = 0
         X_val[:, num_idx[fully_nan_num_idcs]] = 0
         X_test[:, num_idx[fully_nan_num_idcs]] = 0
+    if X_train.dtype == "object":
+        warnings.warn("X_train dtype is object, converting to float32")
+        X_train = X_train.astype(np.float32)
+        X_val = X_val.astype(np.float32)
+        X_test = X_test.astype(np.float32)
     if impute is not None:
         if verbose or True:
             print(f"Imputing missing values using {impute} strategy...")
@@ -226,7 +231,7 @@ def process_data(
             if verbose:
                 print(f"Setting {highly_missing_cols.sum()} columns with >{frac_threshold} missing values to zero")
             # Cant drop as we rely on indices; so instead we set them to zero
-            X[:, highly_missing_cols] = 0
+            X[:, highly_missing_cols] = 0.
             if verbose:
                 print(f"Shape {name}: {X.shape}")
             if verbose:
